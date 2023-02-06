@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+ 
+    <style type="text/css">
+        .aui-list .aui-list-item-label {
+        width: 300px;
+        color: #999;
+        line-height: 1.2rem;
+      }
+    </style>
+</head>
+<body>
+    <section class="aui-content ">
+        <ul class="aui-list aui-media-list ">
+            <input class="aui-input" type="text"  name="token" id="token"  style="display: none;" >
+            <input class="aui-input" type="text"  name="Uid" id="Uid"  style="display: none;" >
+
+           <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Email_Name">Email</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <input class="aui-input" type="text" style="background-color: #eeeeee;" disabled name="Email" id="name"  required="required" validate_msg="Email is require;" >
+                    </div>
+                </div>
+            </li> 
+            <!--<li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Password_Name">Password</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                      <input class="aui-input"  type="text"  name="Password" id="Password"  required="required" validate_msg="Password is require;" >                       
+                    </div>
+                </div>
+            </li> -->
+
+            <!-- <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Confirm_Password_Name">Confirm  Password</span>
+                    </div>
+                    <div class="aui-list-item-input" >                   
+                        <input class="aui-input" type="text"  name="pwd2" id="pwd2"  required="required" validate_msg="Password does not match;"  >
+                    </div>
+                </div>
+            </li> -->
+
+            <li class="aui-list-item">
+                   
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label" style="display: flex;width: 200px;">
+                        <div class="aui-btn aui-btn-info " id="change_password" style="width: 100%;margin-right: 1rem;margin-bottom: 0.3rem;"  onclick = "update_password('u')">Password</div>
+                    </div>
+                    
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Street_Name">Street</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                          <input class="aui-input" type="text"  name="Street" id="Street"  required="required"  validate_msg="Street is require;" >
+                    </div>
+                </div>
+            </li>
+           <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="City_Name">City</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="City" id="City"  required="required" validate_msg="City is require;">                         
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Country_Name">Country</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <select name="Country" id="Country" class="form-control" onChange="getState(this.value)" required="required"  validate_msg="Country is require;">
+                            <option value="" selected='selected'>select</option>
+                        </select>                        
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="State_Province">State</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <select name="State" id="State" class="form-control" required="required"  validate_msg="State is require;">
+                            <option value="" selected='selected'>select</option>
+                        </select>                        
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Zip_Code">ZipCode</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="ZipCode" id="ZipCode"  required="required" validate_msg="ZipCode is require;">                         
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Contact_Person">Contact Person</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="Contact_Person" id="ContactPerson"  required="required" validate_msg="Contact_Person is require;">                         
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Contact_Number">Contact Number</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="Contact_Number" id="ContactNumber"  required="required" validate_msg="Contact_Number is require;">                         
+                    </div>
+                </div>
+            </li>
+
+
+            
+         
+        </ul>
+            <div class="aui-margin-t-15 aui-padded-15">
+
+                <div class="aui-btn  aui-btn-block aui-btn-info"  id="submit" onclick = upload()>Submit</div>
+
+            </div>
+            <div class="aui-margin-t-15 aui-padded-15">
+
+                <div class="aui-btn  aui-btn-block aui-btn-info"  id="delete_account" onclick = del()>Delete Account</div>
+    
+            </div>
+    </section>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/form_opration.js"></script>
+<script type="text/javascript" src="../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script>
+<script type="text/javascript">
+    var mulimg_arr={};
+    var dialog = new auiDialog();
+    var toast = new auiToast({});
+    var select_data = {
+        "Country":"",
+        "State": ""
+    };
+   var localization = $api.getStorage("localization");
+
+    apiready = function(){
+        // var localization = $api.getStorage("localization");
+        // alert(JSON.stringify(localization));
+        $api.html($api.byId('Email_Name'), localization.Email_Name);
+        $api.html($api.byId('change_password'), localization.change_password);
+        // $api.html($api.byId('Password_Name'), localization.Password_Name);
+        // $api.html($api.byId('Confirm_Password_Name'), localization.Confirm_Password_Name);
+        $api.html($api.byId('Street_Name'), localization.Street_Name);
+        $api.html($api.byId('City_Name'), localization.City_Name);
+        $api.html($api.byId('Country_Name'), localization.Country_Name);
+        $api.html($api.byId('State_Province'), localization.State_Province);
+        $api.html($api.byId('Zip_Code'), localization.Zip_Code);
+        $api.html($api.byId('Contact_Person'), localization.Contact_Person);
+        $api.html($api.byId('Contact_Number'), localization.Contact_Number);
+        
+        options_Country = "<option value='' selected='selected'>"+localization.select+"</option>";
+        $api.append($api.byId('Country'), options_Country);
+        $api.append($api.byId('State'), options_Country);
+
+        loadData(function(){})
+        initLabel();
+        initForm();
+        
+
+        api.addEventListener({
+            name:'changeState'
+        }, function(ret){
+            var country = ret.value.country;
+            getState(country);
+        })
+
+        
+    }
+    function initForm()
+    {
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'country.json'
+        }, function(ret, err) {
+            if (ret.status) {
+            
+                var options = '';
+                var data = JSON.parse(ret.data);
+                for (key in data) {         
+                    var text=data[key];         
+                    options += "<option value='"+key+"' >"+text+"</option>";              
+                }
+                $api.append($api.byId('Country'), options);
+            } else {
+                 alert(err.msg);
+            }
+        });
+       
+    }
+
+    function changeCountry() {
+        var country = $api.val($api.byId('Country'));
+        api.sendEvent({
+            name: 'changeCountry',
+            extra: {
+               country: country
+            }
+        });
+    }
+
+    function getCountry(callback)
+    {
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'country.json'
+        }, function(ret, err) {
+            if (ret.status) {            
+                var options = '';
+                var data = JSON.parse(ret.data);
+                for (key in data) {
+                    var text=data[key];//alert(select_data['Country']);alert('111'); return;
+                    if(select_data['Country'] && key == select_data['Country']) {
+                        options += "<option value='"+key+"' selected>"+text+"</option>"; 
+                    } else {
+                        options += "<option value='"+key+"' >"+text+"</option>";
+                    }                                    
+                }
+                $api.append($api.byId('Country'), options);
+
+                if(select_data['Country']) {
+                    api.sendEvent({
+                        name: 'changeState',
+                        extra: {
+                            country: select_data['Country'],
+                            frmname: api.frameName
+                        }
+                    });
+                }
+            } else {
+                alert(err.msg);
+            }
+            callback();
+        });    
+       
+    }
+    
+    function getState(value) {
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'state.json'
+        }, function(ret, err) {
+            if (ret.status) {
+            
+                var options = '';
+                var state = JSON.parse(ret.data);
+                var data = state[value]
+                for (key in data) {         
+                    var text=data[key]; 
+                    if(key == select_data['State']) {        
+                        options += "<option value='"+key+"' selected>"+text+"</option>";     
+                    }else {
+                        options += "<option value='"+key+"' >"+text+"</option>";
+                    }         
+                }
+                $api.html($api.byId('State'), options);
+            } else {
+                alert(err.msg);
+            }
+        }); 
+                
+
+    }
+    
+
+    function setValue(form_id, value)
+    {
+      // if(api.pageParam.ids)
+        $api.val($api.byId(form_id), value);
+        // document.getElementById(form_id).value = value;
+
+      // if(mainpart && mainpart[store_id])
+
+    }
+
+    function upload(){
+        var data = {};
+        var form_data= getForm();
+        var params_data = api.pageParam.data;
+        data = Object.assign(form_data, params_data);
+        
+        var url=$api.getStorage('url') + '/update_user_se'
+        // alert(JSON.stringify(data));
+
+        ajaxUpload(url,{values: data},function(ret,err){
+
+            if(ret.status)
+            {
+                alert('ok');
+    
+            }
+            else
+            {
+                alert(ret.msg);
+            }
+            if(err)
+            {
+                // senderror({uri:url,content:JSON.stringify(err)});
+            //   alert(JSON.stringify(err));
+                alert('数据提交失败！');
+
+            }
+        })
+      
+    }
+    function initLabel()
+    {
+        var label_name = ['Email_Name','Password_Name', 'Confirm_Password_Name','Street_Name','City_Name','Country_Name','State_Province','Zip_Code','Contact_Person',
+            'Contact_Number','submit','delete_account'];
+        var label_name_1 = ['Email_Name','Password_Name', 'Confirm_Password_Name','Street_Name_1','City_Name_1','Country_Name_1','State_Province_1','Zip_Code_1','Contact_Person_1',
+            'Contact_Number_1','submit','delete_account'];
+        for(i=0;i<label_name.length;i++)
+        {
+            $api.html($api.byId(label_name[i]), localization[label_name_1[i]]);
+        }
+    }
+
+    function loadData(callback) {
+        var token_2 = $api.getStorage('token');
+        $api.val($api.byId('token'), token_2);
+        var url=$api.getStorage('url')+'/userInfo2';
+        var data = {}
+        // alert(JSON.stringify(api.pageParam));
+        ajaxRequest(url,{values: data},function(ret,err){
+            // alert(JSON.stringify(ret.data));return;
+            if(ret.status == 1) {
+                var data = ret.data;
+                select_data['Country'] = data.Country;
+                $api.val($api.byId('name'), data.Email);
+                $api.val($api.byId('Uid'), data.Uid);
+                // $api.val($api.byId('Password'), data.Password);
+                // $api.val($api.byId('pwd2'), data.Special_Password);
+                $api.val($api.byId('Street'), data.Street);
+                $api.val($api.byId('City'), data.City);
+                // $api.val($api.byId('Country'), data.Country);
+                // $api.val($api.byId('State'), data.State);
+                $api.val($api.byId('ZipCode'), data.ZipCode);
+                $api.val($api.byId('ContactPerson'), data.Contact_Person);
+                $api.val($api.byId('ContactNumber'), data.Contact_Number);
+
+                if(data.Country) {
+                    api.sendEvent({
+                        name: 'changeState',
+                        extra: {
+                            country: data.Country,
+                            frmname: api.frameName
+                        }
+                    });    
+                }
+                     
+            }
+            getCountry(function(){});
+            callback()
+        })
+
+    }
+
+    function update_password(u){
+        
+        var token = $api.val($api.byId('token'));
+        var email = $api.val($api.byId('name'));
+        var Uid = $api.val($api.byId('Uid'));
+        var pageparam = {email:email,Uid:Uid};
+        // openWin('updatepassword',pageparam);
+        // alert(JSON.stringify(pageparam));
+        api.openWin({
+          name: 'updatepassword_win',
+          url: 'updatepassword_win.html',
+          scaleEnabled:true,
+          pageParam: pageparam
+      });
+    }
+
+    function del(){
+        api.confirm( {
+            title: 'DELETE',
+            msg: 'Are you sure you want to delete the account?',
+            buttons: [ 'Delete', 'Cancel' ]
+        }, function ( ret, err ) {
+            var index = ret.buttonIndex;
+            if ( index == 1 ) {
+                var token_2 = $api.getStorage('token');
+                $api.val($api.byId('token'), token_2);
+                var data = {}
+
+                var url=$api.getStorage('url')+'/delete_account';
+                // var Uid = $api.val($api.byId('Uid'));
+                // alert(JSON.stringify(data));return;
+                ajaxRequest(url,{values: data},function(ret,err){ 
+                    // alert(JSON.stringify(ret.data));return;
+                    if(ret.status == 1) {
+                        alert(ret.msg);
+                        
+                        api.openWin({
+                            name: 'login_win',
+                            url: 'login_win.html',
+                            slidBackEnabled:false
+                        });
+                        setTimeout(function() {
+                            closeWin();
+                        }, 1000);
+
+                    }else{
+                        alert(ret.msg);
+                    }
+                })
+            }
+        } )
+    }
+</script>

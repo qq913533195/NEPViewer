@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+      img.img_icon {
+            display: block;
+            /* margin: 0.5rem 1rem; */
+            width: 80px;
+            height: 80px;
+            border-radius: 20%;
+      }
+
+      .aui-list .aui-list-item-label {
+        width: 40%;
+      }
+      /* .aui-list .aui-input{
+        border: 1px solid #ccc ;
+        border-radius: 4px;
+      } */
+     /* .aui-list textarea{
+        border: 1px solid #ddd ;
+        border-radius: 4px;
+        height: 4rem;
+      } */
+
+      /*.aui-list-item-label{
+        line-height: 2.2rem;
+      }*/
+
+    </style>
+</head>
+<body>
+    <section class="aui-content ">
+
+        <ul class="aui-list aui-media-list ">
+           <li class="aui-list-item">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Email_Name"></span>
+                    </div>
+                    <div class="aui-list-item-inner" >
+                        <input class="aui-input" type="text"  name="Email" id="name"  required="required" validate_msg="Email is require;" is_check="email">
+                    </div>
+                </div>
+            </li>
+            
+            
+         
+        </ul>
+            <div class="aui-margin-t-15 aui-padded-15">
+
+                <div class="aui-btn  aui-btn-block aui-btn-info"  id="btn_pass_submit" onclick = upload()>Send</div>
+
+            </div>
+    </section>
+
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/form_opration.js"></script>
+<script type="text/javascript" src="../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script>
+
+<script type="text/javascript">
+    var mulimg_arr={};
+    var dialog = new auiDialog();
+    var toast = new auiToast({
+    });
+    var localization = $api.getStorage("localization");
+  
+    apiready = function(){
+      
+        initLabel();
+      
+    }
+    
+
+    function upload(){
+        if(checkForm()){
+            var data = {};
+            var form_data= getForm();
+            var params_data = api.pageParam.data;
+            
+            data = Object.assign(form_data, params_data);
+            data['lang'] = checkLang();
+            var url=$api.getStorage('url') + '/send_password_mail'
+            // alert(JSON.stringify(data));
+  
+            ajaxUpload(url,{values: data},function(ret,err){
+  
+                if(ret.status)
+                {
+                   
+                    api.alert({
+                        title: localization.send_email_success,
+                        msg:localization.send_email_success_msg
+                    }, function(ret, err){
+                        if( ret ){
+                            // openWin("error",{title:"网络错误,请稍后重试"});
+                        }else{
+
+                        }
+                    });
+                    // api.openWin({
+                    //     name: 'login_win',
+                    //     url: 'login_win.html',
+                    //     slidBackEnabled:false
+                    // });
+
+                    // setTimeout(function() {
+                    //     closeWin();
+                    // }, 1000);
+        
+                }
+                else
+                {
+                    alert(ret.msg);
+                }
+                if(err)
+                {
+                    // senderror({uri:url,content:JSON.stringify(err)});
+                  alert(JSON.stringify(err));
+                    // alert('数据提交失败！');
+  
+                }
+          })
+      }
+
+    }
+    function initLabel()
+    {
+        var label_name = ['Email_Name','btn_pass_submit'];
+        for(i=0;i<label_name.length;i++)
+        {
+            $api.html($api.byId(label_name[i]), localization[label_name[i]]);
+        }
+    }
+</script>
+</html>

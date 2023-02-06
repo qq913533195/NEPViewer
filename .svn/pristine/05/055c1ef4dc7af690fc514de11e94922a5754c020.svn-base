@@ -1,0 +1,835 @@
+
+function getForm()
+{
+
+    var values={};
+    var formcontent=$api.domAll('input');
+    var check_arr = [];
+    for(i=0;i<formcontent.length;i++)
+    {
+      form_name = $api.attr(formcontent[i], 'name');
+      if(form_name){
+        if(formcontent[i].type=='radio'  )
+        {
+          if(formcontent[i].checked)
+          {            
+            values[form_name]=$api.val(formcontent[i]);
+          }
+        }
+        else if(formcontent[i].type=='checkbox'){
+          if(!check_arr[form_name])
+              check_arr[form_name] = [];
+          if(formcontent[i].checked)
+          {
+            check_arr[form_name].push($api.val(formcontent[i]));
+            values[form_name] = check_arr[form_name].join(',');
+          }
+          if(check_arr[form_name].length === 0)
+            values[form_name] = '';
+        }
+        else
+        {
+          values[form_name]=$api.val(formcontent[i]);
+        }
+      }
+    }
+
+    var  textarea_content= $api.domAll('textarea');
+    for(i=0;i<textarea_content.length;i++)
+    {
+      form_name = $api.attr(textarea_content[i], 'name');
+      values[form_name]=$api.val(textarea_content[i]);
+    }
+
+
+    var select_content=$api.domAll('select');
+    for(i=0;i<select_content.length;i++)
+    {
+      form_name = $api.attr(select_content[i], 'name');
+      
+      values[form_name]=$api.val(select_content[i]);
+      console.log(form_name)
+
+    }
+    // alert(JSON.stringify(values));
+     return values;
+
+}
+
+
+
+function createCommonFrom(datas)
+{
+  // alert(JSON.stringify(datas));
+  var formButton='';
+  var formContent='';
+  var hideContent='';
+  var mulimgContent='';
+  for(i=0;i<datas.length;i++)
+  {
+
+    var clickname=datas[i].item_event;
+    var no=i+1;
+    var styleclass='style="'+datas[i].style+'"';
+    if(datas[i].item_type=='button' || datas[i].item_type=='submit')
+    {
+      var clickevent=clickname?'onclick='+clickname:'onclick=""';
+      var buttonclass=datas[i].color?'aui-btn-'+datas[i].color:'aui-btn-primary';
+      var styleclass=' style="'+datas[i].style+'" ';
+      var formButton='';
+      // formButton +='<div class="aui-bar-tab-item aui-btn '+buttonclass+'" tapmode style="width: auto;"> <input type="'+datas[i].item_type+'" class="'+buttonclass+'" '+styleclass+' id="'+datas[i].item_id+'" '+clickevent+' value="'+datas[i].item_label+'"></div>';
+      formButton +='<div class="aui-btn  aui-btn-block '+buttonclass+'" '+styleclass+clickevent+'>'+datas[i].item_label+'</div>';
+    }
+    else if(datas[i].item_type=="hidden")
+    {
+
+        hideContent +='<input type="'+datas[i].item_type+'"  name="'+datas[i].item_name+'" id="'+datas[i].item_id+'"  value="'+datas[i].item_value +'">';
+        if(datas[i].item_value=="lonlat")
+        {
+          is_lonlat=1;
+          lonlat_id=datas[i].item_id;
+        }
+    }
+    else
+    {
+        var styleclass=' style="'+datas[i].style+'" ';
+        var required = '';
+        if(datas[i].item_url)
+        {
+          rule_arr = split(';',datas[i].item_id);
+          for(var j=0;j<rule_arr;j++)
+          {
+            if(rule_arr[j] == 'required')
+              required = 'required="required"';
+          }
+
+        }
+        // var required=parseInt(datas[i].)?'required="required"':'';
+        formContent +='<li class="aui-list-item">';
+        formContent +='<div class="aui-media-list-item-inner">';
+        formContent +='<div class="" id="'+datas[i].item_id+'_label">' +no +'.'+datas[i].item_label + '</div>' ;
+        formContent +='<div class="aui-list-item-inner" >';
+        switch (datas[i].item_type) {
+            case "image":
+                var clickevent=clickname?'onclick='+clickname+'("'+datas[i].item_id+'",'+datas[i].is_high+',function(){})':'onclick=""';
+                // formContent += '<img class="sin_img_icon" src="../../image/camera.png" '+styleclass+' id="'+datas[i].item_id+'"  '+clickevent+'>';
+                // formContent +='<div id="sinsrc_'+datas[i].item_id+'" class="aui-hide"></div>';
+                // hideContent +='<input type="hidden"  id="pic_'+datas[i].item_id+'" placeholder="请上传'+datas[i].item_label+'" '+required+'>';
+
+                formContent += '<img class="img_icon" src="../../image/camera.png"  id="img_'+datas[i].item_id+'"' +styleclass+' '+clickevent+'>';
+                formContent +='<input type="hidden"  id="'+datas[i].item_id+'" name="'+datas[i].item_name +'" value="'+ datas[i].item_value +'" placeholder="请上传'+datas[i].item_label+'" '+required+ ' '+check +'>';
+                break;
+            case "string":
+            case "text":
+            case "number":
+            case "date":
+            case "time":
+            case "datetime-local":
+            case "password":
+                formContent += '<input class="aui-input" '+styleclass+' type="'+datas[i].item_type+'"  name="'+datas[i].item_name+'" id="'+datas[i].item_id+'" '+ required+' placeholder="请输入'+datas[i].item_label +'">';
+                break;
+            case "decimal":
+            case "number":
+              formContent += '<input class="aui-input" '+styleclass+' type="number"  name="'+datas[i].item_name+'" id="'+datas[i].item_id+'" '+ required+' placeholder="请输入'+datas[i].item_label +'">';
+                break;
+            case "textarea":
+                formContent += '<textarea class="aui-input "'+styleclass+' name="'+datas[i].item_name+'"  id="'+datas[i].item_id+'" placeholder="请输入'+datas[i].item_label+'" '+required+'></textarea> ';
+                break;
+            case "select":
+                formContent += '<select class="aui-input" '+styleclass+' id="'+datas[i].item_id+'" name="'+datas[i].item_name+'">';
+                var item_dataOri=datas[i].rule.dataOri?datas[i].rule.dataOri.data:{};
+                for(var key in item_dataOri){
+                    formContent +='<option value="'+key+'">'+ item_dataOri[key]+'</option>';
+                }
+                formContent += '</select>';
+                break;
+            case "radio":
+                if(datas[i].item_value==1)
+                {
+                  var ycheck="checked";
+                  var ncheck="";
+                }
+                if(datas[i].item_value==0)
+                {
+                  var ncheck="checked";
+                  var ycheck="";
+                }
+                formContent += '<label style="margin-right:1.5rem;"><input class="aui-radio " '+styleclass+' type="radio" '+ycheck+' id="'+datas[i].item_id+'" name="'+datas[i].item_name+'" value="1">是</label><label><input type="radio" class="aui-radio" '+ncheck+' id="'+datas[i].item_id+'" name="'+datas[i].item_name+'" value="0" >否</label>';
+
+                break;
+            case "mu_image":
+                var clickevent=clickname?'onclick='+clickname+'("'+datas[i].item_id+'",'+datas[i].is_high+',function(){})':'onclick=""';
+                formContent += '<img class="img_icon" src="../../image/camera.png" id="img_'+datas[i].item_id+'"  '+clickevent+'>';
+                formContent +='<input type="hidden" id="'+datas[i].item_id+'" name="'+ datas[i].item_name+'" value="">';
+                var arr={};
+                arr["necessary"]=parseInt(datas[i].rule.is_necessary);
+                arr["placeholder"]="请上传" + datas[i].item_label +"(至少"+ datas[i].item_value +"张)" ;
+                arr["mulimg_type"]="mu_image";
+                arr["mulimg_number_remain"] = parseInt(datas[i].item_value);
+                arr["src"] = [];
+                // arr["path"] = [];
+                mulimg_arr[datas[i].item_id]=arr;
+                break;
+
+
+        }
+        formContent +='</div">';
+        formContent +='</div">';
+        formContent +='</div">';
+        formContent +='</li>';
+
+        if(datas[i].item_type == "mu_image")
+        {
+          formContent += '<div class="aui-list-item aui-hide " id="item_'+datas[i].item_id+'" >';
+          formContent += '<div class="aui-grid " >';
+          formContent += '<div class="aui-row " id="row_'+datas[i].item_id+'">' ;
+          formContent += '</div>';
+          formContent += '</div>';
+          formContent += '</div>';
+        }
+    }
+  }
+  // alert(hideContent);
+  // alert(formContent);
+  // alert(formButton);
+  $api.html($api.dom('.aui-list'), formContent);
+  $api.html($api.dom('.aui-bar'), formButton);
+  $api.html($api.byId('hide'), hideContent);
+  $api.html($api.byId('divmul'), mulimgContent);
+}
+
+
+
+
+
+function outputInput(id,value)
+{
+  var str='<input type="text" id="'+id+'" name="'+id+'" value="'+ value+'">';
+  // alert(str);
+  $api.append($api.dom('#hide'), str);
+}
+
+function openActionsheet(id,is_high,callback){
+    actionsheet.init({
+        frameBounces:false,//当前页面是否弹动，（主要针对安卓端）
+
+        buttons:['拍照','图库选择']
+    },function(ret){
+        if(ret.buttonIndex==1)
+          var sourcetype='camera';
+        if(ret.buttonIndex==2)
+          var sourcetype='library';
+
+       selectPic(id,sourcetype,is_high,function(ret,err){
+          callback(ret,err);
+        });
+    })
+}
+function selectPic(id,sourcetype,is_high,callback)
+{
+  var targetwidth=612;
+  var targetheight=816
+  var quality=50;
+  if(is_high==1)
+  {
+    targetwidth=2448;
+    targetheight=3264;
+    quality=80;
+  }
+  api.getPicture({
+      sourceType: sourcetype,
+      // sourceType: 'library',
+      encodingType: 'jpg,png',
+      mediaValue: 'pic',
+      // destinationType: 'base64',
+      allowEdit: false,
+      quality:quality,
+      destinationType: 'url',
+      targetWidth:targetwidth,
+      targetHeight:targetheight,
+      saveToPhotoAlbum: false
+  }, function(ret, err) {
+      // alert(JSON.stringify(ret));
+      if (ret.data=="") {
+        var picstatus=0;
+        var img_src='';
+      }
+      else
+      {
+          // alert(JSON.stringify(ret));
+          var picstatus=1;
+          var  img_src=ret.data;
+      }
+      callback({picstatus:picstatus,img_src:img_src},err);
+  })
+}
+
+function openActionsheetMul(id,is_high,callback){
+    actionsheet.init({
+        frameBounces:false,//当前页面是否弹动，（主要针对安卓端）
+        buttons:['拍照','图库选择']
+    },function(ret){
+        if(ret.buttonIndex==1)
+          var sourcetype='camera';
+        if(ret.buttonIndex==2)
+          var sourcetype='library';
+
+        selectPicMul(id,sourcetype,is_high,function(ret,err){
+          callback(ret,err);
+        });
+    })
+}
+function selectPicMul(id,sourcetype,is_high,callback)
+{
+  var targetwidth=612;
+  var targetheight=816
+  var quality=50;
+  if(is_high==1)
+  {
+    targetwidth=2448;
+    targetheight=3264;
+    quality=80;
+  }
+  api.getPicture({
+      sourceType: sourcetype,
+      // sourceType: 'library',
+      encodingType: 'jpg,png',
+      mediaValue: 'pic',
+      // destinationType: 'base64',
+      allowEdit: false,
+      quality:quality,
+      destinationType: 'url',
+      targetWidth:targetwidth,
+      targetHeight:targetheight,
+      saveToPhotoAlbum: false
+  }, function(ret, err) {
+    // alert(JSON.stringify(ret));
+      if (ret.data=="") {
+        var picstatus=0;
+        var img_src='';
+      }
+      else
+      {
+          // alert(JSON.stringify(ret));
+          var picstatus=1;
+          var img_src=ret.data;
+      }
+      callback({picstatus:picstatus,img_src:img_src},err);
+  })
+
+}
+
+function getPic(id,callback)
+{
+    api.getPicture({
+      sourceType: 'camera',
+      encodingType: 'jpg',
+      mediaValue: 'pic',
+      destinationType: 'base64',
+      allowEdit: false,
+      destinationType: 'url',
+      quality: 50,
+      targetWidth:612,
+      targetHeight:816,
+      saveToPhotoAlbum: false
+  }, function(ret, err) {
+      if (ret.data=="") {
+        var backdata={picstatus:0};
+        callback(backdata,err);
+      }
+      else
+      {
+        var  form_img=$api.byId(id);
+        var img_src=ret.data;
+        $api.attr(form_img,'src', img_src);
+        $api.addCls(form_img, 'img_icon');
+        $api.attr(form_img,'alt','upload');
+        getLonLat(function(ret,err){
+          if(ret)
+          {
+            var backdata={lonlat:{longitude:ret.lon,latitude:ret.lat},img_src:img_src,picstatus:1};
+          }
+          if(err)
+          {
+            var backdata={lonlat:{latitude:"",longitude:""},img_src:img_src,picstatus:1};
+          }
+          callback(backdata,err);
+        })
+      }
+
+  })
+}
+
+
+
+function getLonLat(callback)
+{
+  var data = {
+    lon_lat: '',
+    address: ''
+  };
+  map.getLocation({
+      accuracy: '100m',
+      autoStop: true,
+      filter: 1
+  }, function(ret, err){
+      if(ret.status)
+      {
+          data.lon_lat = ret.lon + ',' + ret.lat;
+          map.getNameFromCoords({
+              lon: ret.lon,
+              lat: ret.lat
+          }, function(ret1, err1) {
+              if(ret1.status)
+              {
+                data.address = ret1.address;
+              }
+              callback(data);
+          });
+      }
+      else
+        callback(data);
+  });
+}
+
+
+function uploadPic(id,ret)
+{
+  // openMask();
+  // alert(JSON.stringify(ret));
+  var datas={};
+  var values={};
+  var files={};
+  values["token"]=$api.getStorage('token');
+  files["file"]=ret.img_src;  
+  var initdata=JSON.parse($api.getStorage('init'));
+  var url = initdata.url_upload;
+  // alert(url)
+  var file = ret.img_src;
+  // alert(file)
+  if(datas)
+  {
+    api.ajax({
+        url:url,
+        method:"post",
+        data: {
+          values: {
+            token:$api.getStorage('token')
+          },
+          files: {
+            file: file
+          }
+        },
+        cache: false,
+        timeout: 30,      
+        dataType:'json',
+    },function(ret,err){
+      // alert(JSON.stringify(err));
+        alert(JSON.stringify(ret));
+        if(ret.status == 1)
+        {
+          closeMask();
+          var  form_img=$api.byId('img_'+id);
+          $api.attr(form_img,'src', initdata.url + ret.data.url);
+          $api.val($api.byId(id), ret.data.url);
+        }
+        else
+        {
+          alert(ret.msg);
+          closeMask();
+        }
+        if(err) {
+          // alert(JSON.stringify(err));
+          closeMask();
+        }
+    })
+    
+  }
+}
+
+function uploadPicMul(id,ret,upload_url)
+{
+    openMask();
+    var datas={};
+    var values={};
+    var files={};
+    values["token"]=$api.getStorage('token');
+    files["file"]=ret.img_src;
+    datas={values:values,files:files};
+    var initdata=JSON.parse($api.getStorage('init'));
+
+    var url= initdata.url_upload;
+    // alert(JSON.stringify(datas));
+    // alert(url)
+    if(datas)
+    {
+      ajaxUpload(url,datas,function(ret,err){
+        // alert(JSON.stringify(ret))
+        // alert(JSON.stringify(err))
+        if(ret.code == 1)
+        {
+          closeMask();
+          // alert(ret.data.url);
+          // alert(id);
+          // alert(mulimg_arr[id]['placeholder']);
+          // mulimg_arr['clean_before_img']['placeholder'] = "aaaaaa";
+          mulimg_arr[id]["mulimg_number_remain"]--;
+          // alert(JSON.stringify(mulimg_arr));
+          mulimg_arr[id]['src'].push(ret.data.url);
+          // mulimg_arr.clean_before_img.mulimg_number_remain = 5;
+          // alert(JSON.stringify(mulimg_arr));
+          api.sendEvent({
+              name: 'imgupadte',
+              extra: {
+                id: id,
+              }
+          });
+        }
+        else{
+          closeMask();
+        }
+        if(err)
+        {
+          closeMask();
+        }
+      })
+    }
+}
+
+
+function checkImg()
+{
+  var form_img= $api.domAll('img');
+
+  for(i=0;i<form_img.length;i++)
+  {
+    var alt=$api.attr(form_img[i], 'alt');
+    // alert(alt);
+    if(alt=="necessary")
+    {
+      var id=$api.attr(form_img[i], 'id');
+      var label=$api.text($api.byId(id+"_label"));
+      alert("请上传"+label);
+      return false;
+    }
+
+  }
+  return true;
+}
+
+function checkForm()
+{
+  var errors =[];
+  var input_content= $api.domAll('input');
+  // alert(JSON.stringify(mulimg_arr));
+  // alert(input_content.length);
+  for(i=0;i<input_content.length;i++)
+  {
+
+    var require=$api.attr(input_content[i], 'required');
+    var value=$api.val(input_content[i]);
+    // alert(value);
+    var id=$api.attr(input_content[i], 'id');
+    var msg=$api.attr(input_content[i], 'validate_msg');
+
+    // alert(id);
+
+    if(require=="required" && value=="" && msg)
+      errors.push(msg);
+
+    var is_check = $api.attr(input_content[i], 'is_check');
+    if(value && is_check == 'email')
+    {
+        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!reg.test(value)) { errors.push('Please enter a valid email address.'); }
+    }
+
+  }
+
+  var  select_content= $api.domAll('select');
+  for(i=0;i<select_content.length;i++)
+  {
+    var require=$api.attr(select_content[i], 'required');
+    var value=$api.val(select_content[i]);
+
+    var msg=$api.attr(select_content[i], 'placeholder');
+
+    if(require=="required" && value=="" && msg)
+    {
+      errors.push(msg);
+    }
+  }
+
+  var  textarea_content= $api.domAll('textarea');
+  for(i=0;i<textarea_content.length;i++)
+  {
+    var require=$api.attr(textarea_content[i], 'required');
+    var value=$api.val(textarea_content[i]);
+    // alert(value);
+    var msg=$api.attr(textarea_content[i], 'placeholder');
+    if(require=="required" && value=="" && msg)
+      errors.push(msg);
+  }
+
+  for(i in mulimg_arr)
+  {
+    // alert(JSON.stringify(mulimg_arr[i]));
+    if(mulimg_arr[i]['mulimg_number_remain'] > 0 && mulimg_arr[i]['necessary']==1)
+    {
+      if(mulimg_arr[i]['placeholder'])
+        errors.push(mulimg_arr[i]['placeholder']);
+    }
+  }
+
+  // alert(JSON.stringify(errors));
+  if (errors.length > 0) {
+       dialog.alert({
+            // title:'提示',
+            msg:errors.join('<br>'),
+            buttons:['Ok']
+        },function(ret){
+
+        })
+
+      return false
+  }
+  return true
+
+}
+  function gracecheck(data, rule){
+    var errors =[];
+    for(var i = 0; i < rule.length; i++){
+      var checktype = rule[i].checkType ? rule[i].checkType : 'notnull'
+      // alert(rule[i].checkType)
+      // if (!data[rule[i].name]) {errors.push( rule[i].errorMsg);return false;}
+      switch (checktype){
+        case 'string':
+          var reg = new RegExp('^.{' + rule[i].checkRule + '}$');
+          if(!reg.test(data[rule[i].name])) {errors.push( rule[i].errorMsg);}
+        break;
+        case 'int':
+          var reg = new RegExp('^(-[1-9]|[1-9])[0-9]{' + rule[i].checkRule + '}$');
+          if(!reg.test(data[rule[i].name])) {errors.push( rule[i].errorMsg);}
+          break;
+        break;
+        case 'between':
+          if (!this.isNumber(data[rule[i].name])){
+            errors.push( rule[i].errorMsg);
+          }
+          var minMax = rule[i].checkRule.split(',');
+          minMax[0] = Number(minMax[0]);
+          minMax[1] = Number(minMax[1]);
+          if (data[rule[i].name] > minMax[1] || data[rule[i].name] < minMax[0]) {
+            errors.push( rule[i].errorMsg);
+          }
+        break;
+        case 'betweenD':
+          var reg = /^-?[1-9][0-9]?$/;
+          if (!reg.test(data[rule[i].name])) { errors.push( rule[i].errorMsg); }
+          var minMax = rule[i].checkRule.split(',');
+          minMax[0] = Number(minMax[0]);
+          minMax[1] = Number(minMax[1]);
+          if (data[rule[i].name] > minMax[1] || data[rule[i].name] < minMax[0]) {
+            errors.push( rule[i].errorMsg);
+          }
+        break;
+        case 'betweenF':
+          var reg = /^-?[0-9][0-9]?.+[0-9]+$/;
+          if (!reg.test(data[rule[i].name])){errors.push( rule[i].errorMsg);}
+          var minMax = rule[i].checkRule.split(',');
+          minMax[0] = Number(minMax[0]);
+          minMax[1] = Number(minMax[1]);
+          if (data[rule[i].name] > minMax[1] || data[rule[i].name] < minMax[0]) {
+            errors.push( rule[i].errorMsg);
+          }
+        break;
+        case 'same':
+          if (data[rule[i].name] != rule[i].checkRule) { errors.push( rule[i].errorMsg);}
+        break;
+        case 'notsame':
+          if (data[rule[i].name] == rule[i].checkRule) { errors.push( rule[i].errorMsg); }
+        break;
+        case 'email':
+          var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+          if (!reg.test(data[rule[i].name])) { errors.push( rule[i].errorMsg); }
+        break;
+        case 'phoneno':
+          var reg = /^1[0-9]{10,10}$/;
+          if (!reg.test(data[rule[i].name])) { errors.push( rule[i].errorMsg); }
+        break;
+        case 'zipcode':
+          var reg = /^[0-9]{6}$/;
+          if (!reg.test(data[rule[i].name])) { errors.push( rule[i].errorMsg); }
+        break;
+        case 'reg':
+          var reg = new RegExp(rule[i].checkRule);
+          if (!reg.test(data[rule[i].name])) { errors.push( rule[i].errorMsg); }
+        break;
+        case 'in':
+          if(rule[i].checkRule.indexOf(data[rule[i].name]) == -1){
+            errors.push(rule[i].errorMsg);
+          }
+        break;
+        case 'notnull':
+          if(data[rule[i].name] == null || data[rule[i].name].length < 1){errors.push( rule[i].errorMsg);}
+        break;
+        // default:
+        //   if (!data[rule[i].name]) {errors.push( rule[i].errorMsg);}
+        //   break;
+      }
+    }
+    if (errors.length > 0) {
+      // alert(errors.join('<br>'))
+       dialog.alert({
+            title:'提示',
+            // msg: 'test<br>test<br>test<br>test<br>test',
+            msg: errors.join('<br>'),
+            buttons:['确定']
+        },function(ret){
+        })
+
+      return false
+    }
+    return true;
+  }
+ function checkMuImg()
+ {
+    // var value=$api.val($api.byId(mulimg_id));
+    // if(mulimg_type=="mu_image" && mulimg_number_upload<mulimg_number)
+    // {
+    //   alert('请上传不少于'+mulimg_number+'张图片');
+    //   return false;
+    // }
+    // return true;
+    for(i in mulimg_arr)
+    {
+      alert(i);
+      alert(JSON.stringify(mulimg_arr[i]));
+    }
+    return true;
+
+ }
+
+  function openMask()
+  {
+      api.openFrame({
+          bgColor : 'rgba(0,0,0,0.6)',
+          name : 'shareframe',
+          url : 'widget://html/shareframe.html',
+          bounces : false,
+          rect : {
+                  x : 0,
+                  y : 0,
+                  w : 'auto',
+                  h : 'auto'
+          }
+      });
+    }
+
+    function closeMask()
+    {
+      api.closeFrame({
+          name: 'shareframe'
+      });
+    }
+//单张图片
+function uploadActionsheet(id,is_high,callback)
+{
+  // alert(id);
+    openActionsheet(id,is_high,function(ret,err){
+      alert(JSON.stringify(ret));
+      if(ret.picstatus)
+      {
+        uploadPic(id,ret);
+
+      }
+
+    });
+}
+//多张图片
+function uploadActionsheetMul(id,is_high,upload_url,callback)
+{
+    openActionsheetMul(id,is_high,function(ret,err){
+      // alert(JSON.stringify(ret));
+      if(ret.picstatus)
+      {
+          uploadPicMul(id,ret,upload_url);
+      }
+    });
+    // callback();
+}
+
+// function uploadCameraMul(id,is_high){
+//     var sourcetype='camera';
+//     selectPicMul(id,sourcetype,is_high,function(ret,err){
+//         uploadPicMul(id,ret);
+//     });
+// }
+
+// function uploadCamera(id,callback)
+// {
+//     // alert(id);
+//     getPic(id,function(ret,err){
+//       // alert(JSON.stringify(ret));
+//       if(ret.picstatus)
+//       {
+//         uploadPic(id,ret);
+//       }
+
+//     });
+// }
+
+// function loadImage(id,url){
+
+//     var initdata=JSON.parse($api.getStorage('init'));
+
+//     var domain = initdata.url;
+//     // alert(domain);
+//     var images = [];
+//     // alert(JSON.stringify(mulimg_arr));
+//     for(var i=0; i<mulimg_arr[id]['src'].length; i++)
+//     {
+//       images.push(domain + mulimg_arr[id]['src'][i]);
+//     }
+
+//     // alert(JSON.stringify(images));
+//     var img_str = '';
+//     for(var i=0; i< images.length; i++) {
+
+//       img_str += '<div class="aui-col-span-8">';
+//       // var img_src= domain + images[i];
+//       var params = {
+//         images:  images,
+//         id: id,
+//         index: i,
+//         delete: true
+//       }
+//       img_str +='<img class="img_icon" src="' + images[i] + '" onclick=openPic('+ JSON.stringify(params)+')>';
+//       // img_str +='<img class="img_icon" src="' + images[i] + '" onclick=openUIPic("'+ id +'")>';
+//       img_str +='</div>';
+//     }
+
+//     // alert(img_str);
+//       // $api.append($api.dom('.aui-row'), img_str);
+//       // $api.html($api.dom('.aui-list'), formContent);
+//     if(img_str != '')
+//     {
+//       $api.removeCls($api.byId('item_'+id), 'aui-hide');
+//       $api.html($api.byId('row_'+id), img_str);
+//       $api.val($api.byId(id), mulimg_arr[id]['src'].join(','));
+//     }
+//     else
+//     {
+//       $api.addCls($api.byId('item_'+id), 'aui-hide');
+//       $api.append($api.byId('row_'+id), img_str);
+//       $api.val($api.byId(id),'');
+//     }
+
+
+// }
+
+// function removeImg(id,index){  // var images = mulimg_arr[id]['src'];
+//   mulimg_arr[id]['src'].splice(index, 1);
+
+//   loadImage(id);
+// }

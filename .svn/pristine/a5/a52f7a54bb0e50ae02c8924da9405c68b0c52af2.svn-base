@@ -1,0 +1,1013 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/step.css" />
+    <style type="text/css">
+      img.img_icon {
+            display: block;
+            /* margin: 0.5rem 1rem; */
+            width: 80px;
+            height: 80px;
+            border-radius: 20%;
+      }
+
+      .aui-list .aui-list-item-label {
+       
+        color: #999;
+        line-height: 1.2rem;
+      }
+
+      .aui-list .aui-list-item-label, .aui-list .aui-list-item-label-icon{
+          width: 100%;
+      }
+     
+      /* .aui-list .aui-input{
+        border: 1px solid #ccc ;
+        border-radius: 4px;
+      } */
+     /* .aui-list textarea{
+        border: 1px solid #ddd ;
+        border-radius: 4px;
+        height: 4rem;
+      } */
+
+      /*.aui-list-item-label{
+        line-height: 2.2rem;
+      }*/
+
+    </style>
+</head>
+<body>
+    <section class="aui-content ">
+        <div class="aui-row">
+            <div class="aui-col-span-2"></div>
+            <div class="aui-col-span-22">
+                <div class="step-box eis-horizontal-steps aui-margin-b-15  aui-margin-t-15">
+                    <div class="eis-form-steps">
+                        <div class="eis-form-step is-finish-new" style="width:38%;" >
+                            <div class="eis-step-head">
+                                <div class="eis-step-icon">
+                                    <div class="step-icon-txt"><i class="fa fa-check"></i></div>
+                                </div>
+                                <div class="eis-step-line">
+                                </div>
+                            </div>
+                            <div class="eis-step-main" style="position: relative;left: 0px;">1 / 3</div>
+                        </div>
+                        <div class="eis-form-step" style="width:38%">
+                            <div class="eis-step-head">
+                                <div class="eis-step-icon">
+                                    <div class="step-icon-txt"><i class="fa fa-check"></i></div>
+                                </div>
+                                <div class="eis-step-line">
+                                </div>
+                            </div>
+                            <div class="eis-step-main" style="position: relative;">2 / 3</div>
+                        </div>
+                       
+                        <div class="eis-form-step" style="width:20%">
+                            <div class="eis-step-head">
+                                <div class="eis-step-icon">
+                                    <div class="step-icon-txt"><i class="fa fa-check"></i></div>
+                                </div>
+                            </div>
+                            <div class="eis-step-main" style="position: relative;left: 0px;">3 / 3</div>
+                        </div>
+                        <div class="eis-step-progress-new"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-2"></div>
+        </div>
+        <div class = "eis-stepContents">
+            <ul class="aui-list aui-media-list ">
+                
+                <input class="aui-input" type="text"  name="token" id="token"  style="display: none;" >
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="End_User">User Email</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <input class="aui-input" type="text"  name="User_Email" id="User_Email"  required="required"  >
+                        </div>
+                    </div>
+                </li>
+
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="Installer_Name">Installer Email</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <input class="aui-input" type="text"  name="Install_Email" id="Install_Email"  required="required"  >
+                            <input class="aui-input" type="hidden"  name="Sid" id="Sid"  required="required"  >
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="Country_Name">Country</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <select name="Country" id="Country" class="form-control" onChange="getState(this.value)" required="required"  validate_msg="Country is require;">
+                                <option value="" selected='selected'>select</option>
+                            </select>                        
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="State_Province">State</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <select name="State" id="State" class="form-control" required="required"  validate_msg="State is require;">
+                                <option value="" selected='selected'>select</option>
+                            </select>                        
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="City_Name">City</span>
+                        </div>
+                        <div class="aui-list-item-input" >                       
+                            <input class="aui-input" type="text"  name="City" id="City"  required="required" validate_msg="City is require;">                         
+                        </div>
+                    </div>
+                </li>
+
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="Street_Name">Street</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <input class="aui-input" type="text"  name="Street" id="Street"  required="required"  validate_msg="Street is require;" >
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar">
+                            <span id="SN_Address">SN/Address</span>
+                        </div>
+                        <div class="aui-list-item-input" >                       
+                            <label><input class="aui-radio" type="radio" name="gateway_type" id="gateway_type" checked="" value="1">  <span id="gateway_Name">Gateway</span></label>
+                            <label><input class="aui-radio" type="radio" name="gateway_type" id="gateway_type" value="2"> <span id="BDM_WiFi_Name">BDM-WiFi</span> </label>                 
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                   
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label addRedStar" style="display: flex;">
+                            <div id="Gateway_SN_Name" style="flex:1;">Gateway S/N</div> 
+                            <div class="aui-btn aui-btn-info " id="Add_SN" style="width: 80px;margin-right: 1rem;margin-bottom: 0.3rem;"  onclick = "action_sn('add')">Add</div>
+                            <div class="aui-btn aui-btn-danger" id="Remove_SN" style="width: 80px;;margin-bottom: 0.3rem;" onclick = "action_sn('remove')">Remove</div>
+                        </div>
+                        
+                        <div class="aui-list-item-input" id="div_sn" >                       
+                            <input class="aui-input SerialNumbers" type="text" oninput="if(value.length>14)value=value.slice(0,14)" onkeyup='this.value=this.value.replace(/\D/gi,"")'  name="SerialNumbers[0]" id="SerialNumbers_0" required="required" max="14" validate_msg="SN is require;" >                                  
+                        </div>
+                    </div>
+                </li>
+                
+
+               
+            </ul>
+            <div class="aui-margin-t-15 aui-padded-15">
+                
+                <div class="aui-btn  aui-btn-block aui-btn-info btn_next" id="next1"  onclick = "btnNextAction(1)" >Next</div>
+
+            </div>
+        </div>
+        <div class = "eis-stepContents">
+            <ul class="aui-list aui-media-list ">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label addRedStar">
+                        <span id="Plant_Name">Name of Your Plant</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <input class="aui-input" type="text"  name="Site_Name" id="Site_Name"  >
+                    </div>
+                </div>
+            </li>
+            <div class="aui-btn  aui-btn-info aui-btn-block"  style="flex: 1;" id="geocoding" onclick = "geocoding()">Get GPS coordinates and timezone</div>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label ">
+                        <span id="Label_Latitude_Name">Latitude</span>
+                    </div>
+                    <div class="aui-list-item-input" style="display: flex;" >
+                        <select name="Latitude_Name" id="Latitude_Name" class="aui-input" style="width: 30%;margin-right: 1rem;">
+                            <!-- <option value="" selected='selected'>Select</option> -->
+                            <option value="+">N</option>
+                            <option value="-">S</option>
+                        </select>
+                        <input type="text" class="aui-input" width="40%" id="Latitude" name="Latitude"  value="0" style="flex: 1;">
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Label_Longitude_Name">Longitude</span>
+                    </div>
+                    <div class="aui-list-item-input" style="display: flex;" >
+                        <select name="Longitude_Name" id="Longitude_Name" class="aui-input" style="width: 30%;margin-right: 1rem;">
+                            <!-- <option value="" selected='selected'>Select</option> -->
+                            <option value="+">E</option>
+                            <option value="-">W</option>
+                        </select>
+                        <input type="text" class="aui-input" width="40%" id="Longitude" name="Longitude"  value="0" style="flex: 1;">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Timezone_Name">Timezone</span>
+                    </div>
+                    <div class="aui-list-item-input">
+                            <select name="Timezone" id="Timezone" class="form-control" >
+                                <option value="" selected='selected'>Select</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+
+            <div class="aui-margin-t-15 aui-padded-15" style="display: flex;">
+                <div class="aui-btn  aui-btn-block aui-btn-danger" id="previous1" style="flex: 1;margin-right: 0.25rem;" onclick = "btnPreAction(0)">Previous</div>
+                <div class="aui-btn  aui-btn-block aui-btn-info btn_next" id="next2" style="flex: 1;margin-left: 0.25rem;"  onclick = "btnNextAction(2)">Next</div>
+
+            </div>
+            </ul>
+        </div>
+        <div class = "eis-stepContents">
+            <ul class="aui-list aui-media-list ">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span id="Temperature_Unit_Name">Temperature Unit</span>
+                        </div>
+                        <div class="aui-list-item-input"  >
+                            <select name="Temperature_Unit" id="Temperature_Unit" class="aui-input">
+                                <option value="Fahrenheit" id="Fahrenheit" >Fahrenheit</option>
+                                <option value="Celsius" id="Celsius" >Celsius</option>
+                            </select>     
+                                            
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span id="Plant_Power_Name">Power of Plant (kW)</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <input class="aui-input" type="number"  name="Plant_Power" id="Plant_Power" value="0" >
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span id="Currency_Unit_Name">Currency Unit</span>
+                        </div>
+                        <div class="aui-list-item-input" style="display: flex;" >
+                            <select name="Currency_Unit" id="Currency_Unit" class="aui-input" style="width: 30%;margin-right: 1rem;">
+                                <option value="" selected='selected'>Select</option>
+                                <option value="JPY">JPY</option>
+                                <option value="USD">USD</option>
+                                <option value="EURO">EURO</option>
+                                <option value="CNY">CNY</option>
+                                <option value="AUD">AUD</option>
+                            </select> 
+                            <input type="number" class="aui-input"  id="Local_electricPrice" name="Local_electricPrice"  style="flex: 1;">  
+                             <span style="width:15%;margin-left: 1rem;line-height: 44px;height: 44px;"> /1 kWh </span>                      
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span id="Module_Manufacture_Type_Name">Module Manufacture Type</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <input class="aui-input" type="text"  name="Module_Manufacture_Type" id="Module_Manufacture_Type"  >
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span id="Location_Name">Location</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                            <input class="aui-input" type="text"  name="Location" id="Location" >
+                        </div>
+                    </div>
+                </li>
+                <!-- <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label" >
+                        <span id="Upload_Image_Name">Upload Image of Your Plant</span>
+                      </div>
+                      <div class="aui-list-item-input" >                        
+                        <div class="aui-list-item-media">
+                            <img class="" src="../image/camera.png" id="img_Logo" onclick='uploadActionsheet("Logo","1",function(){})'>
+                            <input type="hidden" id="Logo" name="Logo" value="" required="required">
+                        </div>
+                      </div>
+                    </div>
+                </li> -->
+
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span id="Other_Viewer">Other Viewer</span>
+                        </div>
+                        <div class="aui-list-item-input" >
+                          <textarea name="Special_Condition" id="Special_Condition"  ></textarea>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="aui-margin-t-15 aui-padded-15" style="display: flex;">
+                <div class="aui-btn  aui-btn-block aui-btn-danger" id="previous2" style="flex: 1;margin-right: 0.25rem;" onclick = "btnPreAction(1)">Previous</div>
+                <div class="aui-btn  aui-btn-block aui-btn-info" id="submit" style="flex: 1;margin-left: 0.25rem;"  onclick = "upload2()">Submit</div>
+
+            </div>
+        </div>          
+        
+           
+    </section>
+
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/form_opration.js"></script>
+<script type="text/javascript" src="../script/aui-actionsheet.js" ></script>
+<script type="text/javascript" src="../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script>
+
+<script type="text/javascript">
+    
+    var mulimg_arr={};
+    var actionsheet = new auiActionsheet();
+    var dialog = new auiDialog();
+    var toast = new auiToast({
+    });
+    var storagename = 'siteform';
+    var select_form = ["Country","State", "Timezone","Latitude_Name", "Longitude_Name", "Timezone", "Temperature_Unit","Currency_Unit"];
+    var select_data = {
+        "Country":"",
+        "State": "",
+        "Timezone": ""
+    };
+    var site_data = {};
+    
+    var localization = $api.getStorage("localization");
+    var initdata=JSON.parse($api.getStorage('init'));
+    var preview_url = initdata.url;
+   
+    apiready = function(){
+        // var localization = $api.getStorage("localization");
+        $api.html($api.byId('End_User'), localization.User_Email_name);
+        $api.html($api.byId('Installer_Name'), localization.Installer_Name);
+        $api.html($api.byId('Country_Name'), localization.Country_Name);
+        $api.html($api.byId('State_Province'), localization.State_Province);
+        $api.html($api.byId('City_Name'), localization.City_Name);
+        $api.html($api.byId('Street_Name'), localization.Street_Name);
+        $api.html($api.byId('SN_Address'), localization.SN_Address);
+        $api.html($api.byId('Add_SN'), localization.Add_SN);
+        $api.html($api.byId('Remove_SN'), localization.Remove_SN);
+        $api.html($api.byId('Gateway_SN_Name'), localization.Gateway_SN_Name);
+
+        $api.html($api.byId('Plant_Name'), localization.Plant_Name);
+        $api.html($api.byId('Label_Latitude_Name'), localization.Label_Latitude_Name);
+        $api.html($api.byId('Label_Longitude_Name'), localization.Label_Longitude_Name);
+        $api.html($api.byId('Timezone_Name'), localization.Timezone_Name);
+
+        $api.html($api.byId('Temperature_Unit_Name'), localization.Temperature_Unit_Name);
+        $api.html($api.byId('Fahrenheit'), localization.Temperature_Unit.Fahrenheit);
+        $api.html($api.byId('Celsius'), localization.Temperature_Unit.Celsius);
+        $api.html($api.byId('Plant_Power_Name'), localization.Plant_Power_Name);
+        $api.html($api.byId('Currency_Unit_Name'), localization.Currency_Unit_Name);
+        $api.html($api.byId('Module_Manufacture_Type_Name'), localization.Module_Manufacture_Type_Name);
+        $api.html($api.byId('Location_Name'), localization.Location_Name);
+        $api.html($api.byId('Other_Viewer'), localization.Other_Viewer);
+
+        $api.html($api.byId('next1'), localization.Next);
+        $api.html($api.byId('next2'), localization.Next);
+        $api.html($api.byId('previous1'), localization.Previous);
+        $api.html($api.byId('previous2'), localization.Previous);
+        $api.html($api.byId('submit'), localization.submit);
+        $api.html($api.byId('geocoding'), localization.Get_GPS_coordinates_and_timezone);
+
+        initLabel();
+        jump_step(0);        
+       
+        getTimeZone();
+
+       
+        getCountry(function(){
+           
+        });
+
+        loadData(function(){
+
+        })
+        api.addEventListener({
+            name:'changeState'
+        }, function(ret){
+            var country = ret.value.country;
+            getState(country);
+        })
+    }
+
+    function initLabel()
+    {
+        var label_name = ['User_Email','Installer_Email_Name','Street_Name','City_Name','Country_Name','State_Province','SN_Address','Gateway_SN_Name','Plant_Name','Label_Latitude_Name','Label_Longitude_Name','Timezone_Name','Temperature_Unit_Name','Plant_Power_Name','Currency_Unit_Name','Module_Manufacture_Type_Name','Location_Name','Upload_Image_Name'];
+        for(i=0;i<label_name.length;i++)
+        {
+            $api.html($api.byId(label_name[i]), localization[label_name[i]]);
+        }
+
+        var token_2 = $api.getStorage('token');
+        $api.val($api.byId('token'), token_2);
+
+        var url=$api.getStorage('url') + '/userInfo';
+        var data = {
+            token:token_2
+        }
+        // var params = {email:email,password:password};
+        ajaxUpload(url,{values: data},function(ret,err){
+
+            if(ret.status)
+            {
+                if(ret.data.User_type == '0' || ret.data.User_type == '6'){
+                    $api.attr($api.byId('User_Email'),"disabled","disabled");
+                    $api.css($api.dom('#User_Email'),'background-color:#eeeeee');
+
+                }else if(ret.data.User_type == '2'){
+                    $api.attr($api.byId('Install_Email'),"disabled","disabled");
+                    $api.css($api.dom('#Install_Email'),'background-color:#eeeeee');
+                }else{
+                    
+                }
+                
+            }
+        });
+    }
+
+    function getCountry(callback)
+    {      
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'country.json'
+        }, function(ret, err) {
+            if (ret.status) {            
+                var options = '';
+                var data = JSON.parse(ret.data);
+                for (key in data) {         
+                    var text=data[key];   
+                    if(select_data['Country'] && key == select_data['Country']) {
+                        options += "<option value='"+key+"' selected>"+text+"</option>"; 
+                    } else {
+                        options += "<option value='"+key+"' >"+text+"</option>";
+                    }                                    
+                }               
+                $api.append($api.byId('Country'), options);
+
+                if(select_data['Country']) {
+                    api.sendEvent({
+                        name: 'changeState',
+                        extra: {
+                            country: select_data['Country'],
+                            frmname: api.frameName
+                        }
+                    });
+                }
+            } else {
+                alert(err.msg);
+            }
+            callback();
+        });    
+       
+    }
+
+    function loadData(callback) {
+        var url=$api.getStorage('url')+'/getSiteInfo';
+        var params={sid: api.pageParam.sid} ;
+        // alert(JSON.stringify(api.pageParam));
+        ajaxRequest(url,params,function(ret,err){
+            // alert(JSON.stringify(ret))
+            if(ret.status == 1) {
+                var data = ret.data;
+                site_data = ret.data.site;
+                for (key in data.site) {
+                    
+                    if(select_form.indexOf(key) > -1) {
+                        select_data[key] = data.site[key];
+                        if(key != "State") {
+                            setSelectVal(key, data.site[key]);
+                        }
+                        // if(key == "Temperature_Unit" || key == "Currency_Unit" || key == "Country"  || key == "Latitude_Name" || key == "Longitude_Name") {
+                        //     setSelectVal(key, data.site[key]);
+                        // }
+                    }else {
+                        if(key == "gateway_type") {
+                            setRadioVal(key, data.site[key]); 
+                        }else if(key == 'Logo' && data.site['Logo']) {
+                            var  form_img = $api.byId('img_'+key);
+                            $api.attr(form_img,'src', preview_url + data.site[key]);
+                        } else {
+                            $api.val($api.byId(key), data.site[key]);
+                        }
+                    }
+                    
+                    // $("#" + key).val(data.site[key]);
+                    // if (key == "Commission")
+                    //     $("input[name='Commission'][value=" + data.site["Commission"] + "]").attr("checked", true);
+
+                    // $("#Old_Commisson").val(data.site["Commission"]);
+
+                    // if (key == "gateway_type") {
+                    //     $("input[name='gateway_type'][value=" + data.site["gateway_type"] + "]").attr("checked", true);
+                    // }
+                }
+
+                if (data.gateway.length > 0) {
+                    var str = '';
+                    for (i = 0; i < data.gateway.length; i++) {
+                        str += '<input class="aui-input SerialNumbers" type="text"  name="SerialNumbers['+i+']" id="SerialNumbers_' + i + '" required="required"  validate_msg="SN is require;" value="'+ data.gateway[i]['strSN']+'"> ';
+                    }
+                    $api.html($api.byId('div_sn'), str);
+                }
+                if(data.site["Country"]) {
+                    api.sendEvent({
+                        name: 'changeState',
+                        extra: {
+                            country: data.site["Country"],
+                            frmname: api.frameName
+                        }
+                    });    
+                }
+                               
+                
+            }
+            callback();
+        })
+    }
+
+    function getState(value) {
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'state.json'
+        }, function(ret, err) {
+            if (ret.status) {
+            
+                var options = '';
+                var state = JSON.parse(ret.data);
+                var data = state[value]
+                for (key in data) {         
+                    var text=data[key]; 
+                    if(key == select_data['State']) {        
+                        options += "<option value='"+key+"' selected>"+text+"</option>";     
+                    }else {
+                        options += "<option value='"+key+"' >"+text+"</option>";
+                    }         
+                }
+                $api.html($api.byId('State'), options);
+            } else {
+                alert(err.msg);
+            }
+        }); 
+                
+
+    }
+    
+    function getTimeZone() {
+        var url=$api.getStorage('url')+'/timezone_list';
+        var params={} ;
+
+        ajaxRequest(url,params,function(result,err){
+            var data=result;
+            var options = '';
+            
+            for (key in data) {         
+                var text=data[key];   
+                if(key == select_data['Timezone']) {
+                    options += "<option value='"+key+"' selected>"+text+"</option>";  
+                } else {
+                    options += "<option value='"+key+"' >"+text+"</option>"; 
+                }   
+                            
+            }
+            $api.append($api.byId('Timezone'), options);
+        })
+    }
+
+    function setValue(form_id, value)
+    {
+     
+        $api.val($api.byId(form_id), value);
+
+    }
+
+    function getPostion() {
+        street = $api.val($api.byId('Street'));
+        city = $api.val($api.byId('City'));
+        state_province = $api.val($api.byId('State'));
+        country = $api.val($api.byId('Country'));
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + street + "," + city + "," + state_province + "," + country + "&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+        // alert(url);
+        api.ajax({
+            url: url,
+            method: 'get',
+            cache: false,
+            timeout: 30,
+            dataType: 'json',            
+        },function (data, status) {
+            // console.log(JSON.stringify(data));
+            if (data.status == "OK") {
+
+                results = data.results;
+
+                latlng = results[0].geometry.location;
+                lat = latlng.lat;
+                lng = latlng.lng;
+                if (lat > 0) {
+                    setSelectVal("Latitude_Name", "+");
+                    $api.val($api.byId("Latitude"), lat);
+                } else {
+                    setSelectVal("Latitude_Name", "-");                    
+                    $api.val($api.byId("Latitude"), Math.abs(parseFloat(lat)));
+
+                }
+                if (lng > 0) {
+                    setSelectVal("Longitude_Name", "+");
+                    $api.val($api.byId("Longitude"), lng);
+                } else {
+                    setSelectVal("Longitude_Name", "-");
+                    $api.val($api.byId("#Longitude"), Math.abs(parseFloat(lng)));
+                }
+                timezone_url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + lat + "," + lng + "&timestamp=1331161200&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+                api.ajax({
+                    url: timezone_url,
+                    method: 'get',
+                    cache: false,
+                    timeout: 30,
+                    dataType: 'json',            
+                }, function (data, status) {
+                    if (data.status == "OK") {
+                        $api.val($api.byId("Timezone"), data.timeZoneId);
+                    } else{
+                        $api.val($api.byId("Timezone"), "UTC");
+                    }
+                     
+                });
+            } else {
+                url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "," + state_province + "," + country + "&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+                api.ajax({
+                    url: url,
+                    method: 'get',
+                    cache: false,
+                    timeout: 30,
+                    dataType: 'json',            
+                },function (data, status) {
+                    if (data.status == "OK") {
+                        results = data.results;
+
+                        latlng = results[0].geometry.location;
+                        lat = latlng.lat;
+                        lng = latlng.lng;
+                        if (lat > 0) {
+                            setSelectVal("Latitude_Name", "+");
+                            $api.val($api.byId("Latitude"), lat);
+                        } else {
+                            setSelectVal("Latitude_Name", "-");
+                            $api.val($api.byId("Latitude"), Math.abs(parseFloat(lat)));
+
+                        }
+                        if (lng > 0) {
+                            setSelectVal("Longitude_Name", "+");
+                            $api.val($api.byId("Longitude"), lng);
+                        } else {
+                            setSelectVal("Longitude_Name", "-");
+                            $api.val($api.byId("Longitude"), Math.abs(parseFloat(lng)));
+                        }
+                        timezone_url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + lat + "," + lng + "&timestamp=1331161200&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+                        api.ajax({
+                            url: timezone_url,
+                            method: 'get',
+                            cache: false,
+                            timeout: 30,
+                            dataType: 'json',            
+                        },function (data, status) {
+                            if (data.status == "OK") {
+                                setSelectVal("Timezone", data.timeZoneId);
+                            } else{
+                                setSelectVal("Timezone", "UTC");
+                            }
+                        });
+                    } 
+                })
+
+            }
+
+        })
+    }
+
+    function upload2(){
+        // alert('edit');
+        var form_data= getForm();
+        // if(gracecheck(form_data, rule1)){
+            var data = {};
+           
+        var params_data = api.pageParam.data;
+        // var token = $api.getStorage('token');
+        data = Object.assign(form_data, params_data);
+        // alert(data);
+        var url=$api.getStorage('url') + '/edit_site2'
+        // alert(url)
+        // alert(JSON.stringify(data));
+        // alert($api.getStorage('token'));
+        ajaxUpload(url,{values: data},function(ret,err){
+
+            if(ret.status)
+            {
+                alert('Saved!');
+                // $api.setStorage('token', ret.data.token);                  
+                // api.openWin({
+                //     name: 'index_win',
+                //     url: 'index_win.html',
+                //     reload:true,
+                //     slidBackEnabled:false
+                // });
+                api.historyBack({
+                    },function(ret,err){
+                        if (!ret.status) {
+                            api.closeWin();
+                        }
+                });
+                setTimeout(function() {
+                    closeWin();
+                }, 1000);
+    
+            }
+            else
+            {
+                alert(ret.msg);
+            }
+            if(err)
+            {
+                // senderror({uri:url,content:JSON.stringify(err)});
+              alert(JSON.stringify(err));
+                // alert('数据提交失败！');
+
+            }
+        })
+    //   }
+
+    }
+    function getDataFromStorage() {
+        var localMsg, localMsg_img;
+        localMsg = $api.getStorage(storagename);
+        // alert(JSON.stringify(localMsg))
+        var input_arr = ['text','tel','hidden','number','password','textarea','date'];       
+        if(localMsg && localMsg.length > -1){
+            for(var i=0;i<localMsg.length;i++){
+                var item_id = localMsg[i].id;
+                var item_name = localMsg[i].name;
+                var item_type = localMsg[i].type;
+                var item_value = localMsg[i].value;
+
+                // var dom = item_id ? $("#"+item_id) : $("[name='"+item_name+"']");
+                // var dom = item_id ? $api.byId(item_id) : $api.dom(el, selector);;
+
+                if(input_arr.indexOf(item_type) > -1){
+                    $api.val($api.byId(item_id), item_value);
+                }
+                if(item_type == "select") {
+                    select_data[item_name] = item_value
+                    if(item_id == "Temperature_Unit" || item_id == "Currency_Unit") {
+                        setSelectVal(item_id, item_value);
+                    }
+                }  
+                // radio_dom = $api.domAll("input[type=radio]");
+                if(item_type == "radio") {                    
+                    setRadioVal(item_name, item_value);                 
+                }
+
+                if(item_id == 'Logo' &&  item_value) {
+                    var  form_img = $api.byId('img_'+item_id);
+                    $api.attr(form_img,'src', preview_url + item_value);
+                }
+                
+            
+               
+            }
+            // alert(JSON.stringify(select_data))
+        }
+    }
+
+    function btnNextAction(index) {
+
+        var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+        var localization = $api.getStorage("localization");
+
+        if(index== 1){
+            var user = $api.val($api.byId('User_Email'));
+            if(user == ''){
+                alert (localization.user_email_is_required);return;
+            }else if(!reg.test(user)){
+                alert (localization.user_email_format_is_wrong);return;
+            }
+            var install = $api.val($api.byId('Install_Email'));
+            if(install == ''){
+                alert (localization.install_email_is_required);return;
+            }else if(!reg.test(install)){
+                alert (localization.installer_email_format_is_wrong);return;
+            }
+            var country = $api.val($api.byId('Country'));
+            if(country == ''){
+                alert (localization.country_is_required);return ;
+            }
+            var state = $api.val($api.byId('State'));
+            if(state == ''){
+                alert (localization.state_province_email_is_required);return ;
+            }
+            var city = $api.val($api.byId('City'));
+            if(city == ''){
+                alert (localization.city_is_required);return ;
+            }
+            var street = $api.val($api.byId('Street'));
+            if(street == ''){
+                alert (localization.street_is_required);return ;
+            }
+            var serialNumbers_0 = $api.val($api.byId('SerialNumbers_0'));
+            if(serialNumbers_0 == ''){
+                alert (localization.sn_is_required);return ;
+            }
+            var gateway_type = $api.val($api.dom("input[name='gateway_type']:checked"))
+            if(gateway_type == 2){
+
+                sn_length = $api.domAll('.SerialNumbers').length;
+                for (var i = 0; i < sn_length; i++) {
+                    var s_val = $api.val($api.byId('SerialNumbers_'+i));
+
+                    if(!/^[a-fA-F\d]+$/.test(s_val)){
+                        alert("SN format error!");
+                        return;
+                    }
+
+                    if(s_val.length != 8){
+                        alert('BDM-WIFI must be 8 digits!');
+                        return 0;
+                    }
+
+                }
+            }else if(gateway_type == 1){
+
+                sn_length = $api.domAll('.SerialNumbers').length;
+                for (var i = 0; i < sn_length; i++) {
+                    var s_val = $api.val($api.byId('SerialNumbers_'+i));
+
+                    if(!/^[\d]+$/.test(s_val)){
+                        alert("Gateway SN format error!");
+                        return;
+                    }
+
+                    if(s_val.length != 14){
+                        alert('Gateway must be 14 digits!');
+                        return 0;
+                    }
+
+                }
+            }
+            getPostion();
+            jump_step(index);
+        }
+        if(index== 2) {
+            var site_name = $api.val($api.byId('Site_Name'));
+            if(site_name == ''){
+                alert (localization.Plant_is_required);return ;
+            }
+            saveStorage(storagename);
+            jump_step(index);
+        }   
+
+    }
+
+    function btnPreAction(index) {
+        // alert(index)
+        saveStorage(storagename);
+        jump_step(index);
+        
+    }
+
+    function action_sn(action) {
+        sn_length = $api.domAll('.SerialNumbers').length;
+       if(action == 'add') {
+           str = '<input class="aui-input SerialNumbers" type="text" oninput="if(value.length>14)value=value.slice(0,14)"  onkeyup="this.value=this.value.replace(/[^a-zA-F0-9]/g,"")" name="SerialNumbers['+sn_length+']" id="SerialNumbers_' + sn_length + '" required="required"  validate_msg="SN is require;" > ';
+           $api.append($api.byId('div_sn'), str);
+       }
+       if(action=="remove") {
+            
+            if(sn_length > 1) {
+                sn_last = $api.last($api.byId('div_sn'),'.SerialNumbers');
+                $api.remove(sn_last);
+            }
+            
+       }
+    }
+
+    function saveFormtoStorage()
+    {
+      // alert("aaaa");
+      saveStorage(storagename);
+    }
+
+    function geocoding() {
+        // alert('map');	
+        $api.val($api.byId('email'))	
+        street = $api.val($api.byId('Street'));
+        street=street.replace("#","");
+
+        city = $api.val($api.byId('city'));
+        state_province = $api.val($api.byId('State'));
+        country = $api.val($api.byId('Country'));
+        
+        url="https://maps.googleapis.com/maps/api/geocode/json?address="+$api.trim(street)+","+$api.trim(city)+","+$api.trim(state_province)+","+$api.trim(country)+"&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+        // alert(url);
+
+        // $.getJSON(url,function(ret,err){
+            // console.log(data);
+        api.ajax({
+            url: url,
+            method: 'get',
+            cache: false,
+            timeout: 30,
+            dataType: 'json',            
+        },function (data, status) {
+            if(data.status=="OK"){
+                results=data.results;
+
+                latlng=results[0].geometry.location;
+                lat=latlng.lat;
+                lng=latlng.lng;
+                if(lat>0)
+                {
+                    $api.val($api.byId('Latitude_Name'), '+');
+                    $api.val($api.byId('Latitude'), lat);
+                    // $("#Latitude_Name").val("+");
+                    // $("#Latitude").val(lat);
+                }else{
+                    $api.val($api.byId('Latitude_Name'), '-');
+                    $api.val($api.byId('Latitude'), Math.abs(parseFloat(lat)));
+                    // $("#Latitude_Name").val("-");
+                    // $("#Latitude").val(Math.abs(parseFloat(lat)));
+                    
+                }
+
+                if(lng>0){
+                    $api.val($api.byId('Longitude_Name'), '+');
+                    $api.val($api.byId('Longitude'), lng);
+                    // $("#Longitude_Name").val("+");
+                    // $("#Longitude").val(lng);
+                }else{
+                    $api.val($api.byId('Longitude_Name'), '-');
+                    $api.val($api.byId('Longitude'), Math.abs(parseFloat(lng)));
+                    // $("#Longitude_Name").val("-");
+                    // $("#Longitude").val(Math.abs(parseFloat(lng)));						
+                }
+
+            }else{
+                $api.val($api.byId('Latitude_Name'), '+');
+                $api.val($api.byId('Latitude'), '0');
+                $api.val($api.byId('Longitude_Name'), '+');
+                $api.val($api.byId('Longitude'), '0');
+                $api.val($api.byId('Timezone'), 'UTC');
+            }
+
+        });
+    };
+  
+</script>
+</html>

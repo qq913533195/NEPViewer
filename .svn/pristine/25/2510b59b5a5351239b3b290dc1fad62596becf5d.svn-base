@@ -1,0 +1,580 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+      img.img_icon {
+            display: block;
+            /* margin: 0.5rem 1rem; */
+            width: 80px;
+            height: 80px;
+            border-radius: 20%;
+      }
+
+      .aui-list .aui-list-item-label {
+        width: 300px;
+        color: #999;
+        line-height: 1.2rem;
+      }
+     
+      /* .aui-list .aui-input{
+        border: 1px solid #ccc ;
+        border-radius: 4px;
+      } */
+     /* .aui-list textarea{
+        border: 1px solid #ddd ;
+        border-radius: 4px;
+        height: 4rem;
+      } */
+
+      /*.aui-list-item-label{
+        line-height: 2.2rem;
+      }*/
+
+    </style>
+</head>
+<body>
+    <section class="aui-content ">
+        <ul class="aui-list aui-media-list ">
+           <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Email_Name">Email</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <input class="aui-input" type="text"  name="Email" id="name"  required="required" validate_msg="Email is require;" >
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="aui-list-item">
+                <div class="aui-list-item-inner ">
+                    <div class="aui-list-item-label">
+                      登录密码
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input class="aui-input" type="password"  placeholder="" id="password"  name="password">
+                    </div>
+                </div>
+            </li> -->
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Password_Name">Password</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                      <input class="aui-input"  type="text"  name="Password" id="Password"  required="required" validate_msg="Password is require;" >                       
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Confirm_Password_Name">Confirm  Password</span>
+                    </div>
+                    <div class="aui-list-item-input" >                   
+                        <input class="aui-input" type="text"  name="pwd2" id="pwd2"  required="required" validate_msg="Password does not match;"  >
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Street_Name">Street</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                          <input class="aui-input" type="text"  name="Street" id="Street"  required="required"  validate_msg="Street is require;" >
+                    </div>
+                </div>
+            </li>
+           <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="City_Name">City</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="City" id="City"  required="required" validate_msg="City is require;">                         
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Country_Name">Country</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <!-- <select name="Country" id="Country" class="form-control" onchange= "changeCountry()" required="required"  validate_msg="Country is require;"> -->
+                        <select name="Country" id="Country" class="form-control" onchange= "getState(this.value)" required="required"  validate_msg="Country is require;">
+                            <option value="" selected='selected'>select</option>
+                        </select>                        
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="State_Province">State</span>
+                    </div>
+                    <div class="aui-list-item-input" >
+                        <select name="State" id="State" class="form-control" required="required"  validate_msg="State is require;">
+                            <option value="" selected='selected'>select</option>
+                        </select>                        
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Zip_Code">ZipCode</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="ZipCode" id="ZipCode"  required="required" validate_msg="ZipCode is require;">                         
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Contact_Person">Contact Person</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="Contact_Person" id="Contact_Person"  required="required" validate_msg="Contact_Person is require;">                         
+                    </div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span id="Contact_Number">Contact Number</span>
+                    </div>
+                    <div class="aui-list-item-input" >                       
+                        <input class="aui-input" type="text"  name="Contact_Number" id="Contact_Number"  required="required" validate_msg="Contact_Number is require;">                         
+                    </div>
+                </div>
+            </li>
+
+
+            
+         
+        </ul>
+            <div class="aui-margin-t-15 aui-padded-15">
+
+                <div class="aui-btn  aui-btn-block aui-btn-info"  id="submit_button" onclick = upload()>Submit</div>
+
+            </div>
+    </section>
+
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/form_opration.js"></script>
+<script type="text/javascript" src="../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script>
+
+<script type="text/javascript">
+    var mulimg_arr={};
+    var dialog = new auiDialog();
+    var toast = new auiToast({
+    });
+    var select_data = {
+        "Country":"",
+        "State": "",
+        "Timezone": ""
+    };
+   var localization = $api.getStorage("localization");
+  
+    apiready = function(){
+      
+        initLabel();
+        initForm();
+
+        getCountry(function(){
+           
+        });
+        api.addEventListener({
+            name:'changeState'
+        }, function(ret){
+            var country = ret.value.country;
+            getState(country);
+        })
+
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.addEventListener({
+            name: 'changeCountry'
+        }, function(ret, err) {
+          // 接口数据整理
+            var country = ret.value.country; 
+            api.readFile({
+            path: localDir + 'state.json'
+            }, function(ret, err) {
+                if (ret.status) {
+                
+                    var options = '';
+                    var state = JSON.parse(ret.data);
+                    var data = state[country]
+                    for (key in data) {         
+                        var text=data[key];         
+                        options += "<option value='"+key+"' >"+text+"</option>";              
+                    }
+                    $api.append($api.byId('State'), options);
+                } else {
+                    alert(err.msg);
+                }
+            });           
+
+        });
+    }
+    function initForm()
+    {
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'country.json'
+        }, function(ret, err) {
+            if (ret.status) {
+            
+                var options = '';
+                var data = JSON.parse(ret.data);
+                for (key in data) {         
+                    var text=data[key];         
+                    options += "<option value='"+key+"' >"+text+"</option>";              
+                }
+                $api.append($api.byId('Country'), options);
+            } else {
+                 alert(err.msg);
+            }
+        });
+       
+    }
+
+    function getCountry(callback)
+    {      
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'country.json'
+        }, function(ret, err) {
+            if (ret.status) {            
+                var options = '';
+                var data = JSON.parse(ret.data);
+                for (key in data) {         
+                    var text=data[key];   
+                    if(select_data['Country'] && key == select_data['Country']) {
+                        options += "<option value='"+key+"' selected>"+text+"</option>"; 
+                    } else {
+                        options += "<option value='"+key+"' >"+text+"</option>";
+                    }                                    
+                }               
+                $api.append($api.byId('Country'), options);
+
+                if(select_data['Country']) {
+                    api.sendEvent({
+                        name: 'changeState',
+                        extra: {
+                            country: select_data['Country'],
+                            frmname: api.frameName
+                        }
+                    });
+                }
+            } else {
+                alert(err.msg);
+            }
+            callback();
+        });    
+       
+    }
+
+    function getState(value) {
+        var localDir = api.wgtRootDir + '/res/json/';
+        api.readFile({
+            path: localDir + 'state.json'
+        }, function(ret, err) {
+            if (ret.status) {
+            
+                var options = '';
+                var state = JSON.parse(ret.data);
+                var data = state[value]
+                for (key in data) {         
+                    var text=data[key]; 
+                    if(key == select_data['State']) {        
+                        options += "<option value='"+key+"' selected>"+text+"</option>";     
+                    }else {
+                        options += "<option value='"+key+"' >"+text+"</option>";
+                    }         
+                }
+                $api.html($api.byId('State'), options);
+            } else {
+                alert(err.msg);
+            }
+        }); 
+                
+
+    }
+    
+    function changeCountry() {
+        var country = $api.val($api.byId('Country'));
+        api.sendEvent({
+            name: 'changeCountry',
+            extra: {
+               country: country
+            }
+        });
+    }
+    
+
+    function setValue(form_id, value)
+    {
+      // if(api.pageParam.ids)
+        $api.val($api.byId(form_id), value);
+        // document.getElementById(form_id).value = value;
+
+      // if(mainpart && mainpart[store_id])
+
+    }
+
+    function upload(){
+        var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+  
+        var email = $api.val($api.byId('name'));
+        if(email == ''){
+            alert (localization.email_is_required);return ;
+        }else if(!reg.test(email)){
+            alert (localization.email_format_is_wrong);return;
+        }
+        var password = $api.val($api.byId('Password'));
+        if(password == ''){
+            alert (localization.password_is_required);return ;
+        }
+        var pwd2 = $api.val($api.byId('pwd2'));
+        if(pwd2 == ''){
+            alert (localization.pwd2_is_required);return ;
+        }
+
+        var form_data= getForm();
+        var data = {};
+        
+        var params_data = api.pageParam.data;
+        data = Object.assign(form_data, params_data);
+        
+        var url=$api.getStorage('url') + '/register'
+        // alert(JSON.stringify(data));
+
+        ajaxUpload(url,{values: data},function(ret,err){
+
+            if(ret.status)
+            {
+                alert('success!');
+                $api.setStorage('token', ret.data.token);                  
+                api.openWin({
+                    name: 'index_win',
+                    url: 'index_win.html',
+                    slidBackEnabled:false
+                });
+
+                setTimeout(function() {
+                    closeWin();
+                }, 1000);
+    
+            }
+            else
+            {
+                alert(ret.msg);
+            }
+            if(err)
+            {
+                // senderror({uri:url,content:JSON.stringify(err)});
+            //   alert(JSON.stringify(err));
+                alert('数据提交失败！');
+
+            }
+        })
+      
+
+    }
+    function initLabel()
+    {
+        var label_name = ['Email_Name','Password_Name', 'Confirm_Password_Name','Street_Name','City_Name','Country_Name','State_Province','Zip_Code','Contact_Person',
+            'Contact_Number','submit_button'];
+        var label_name_1 = ['Email_Name','Password_Name', 'Confirm_Password_Name','Street_Name_1','City_Name_1','Country_Name_1','State_Province_1','Zip_Code_1','Contact_Person_1',
+            'Contact_Number_1','submit_button'];
+        for(i=0;i<label_name.length;i++)
+        {
+            $api.html($api.byId(label_name[i]), localization[label_name_1[i]]);
+        }
+    }
+
+    function loadData(callback) {
+        var url=$api.getStorage('url')+'/getSiteInfo';
+        var params={sid: api.pageParam.sid} ;
+        // alert(JSON.stringify(api.pageParam));
+        ajaxRequest(url,params,function(ret,err){
+            // alert(JSON.stringify(ret))
+            if(ret.status == 1) {
+                var data = ret.data;
+                site_data = ret.data.site;
+                for (key in data.site) {
+                    
+                    if(select_form.indexOf(key) > -1) {
+                        select_data[key] = data.site[key];
+                        if(key != "State") {
+                            setSelectVal(key, data.site[key]);
+                        }
+                        // if(key == "Temperature_Unit" || key == "Currency_Unit" || key == "Country"  || key == "Latitude_Name" || key == "Longitude_Name") {
+                        //     setSelectVal(key, data.site[key]);
+                        // }
+                    }else {
+                        if(key == "gateway_type") {
+                            setRadioVal(key, data.site[key]); 
+                        }else if(key == 'Logo' && data.site['Logo']) {
+                            var  form_img = $api.byId('img_'+key);
+                            $api.attr(form_img,'src', preview_url + data.site[key]);
+                        } else {
+                            $api.val($api.byId(key), data.site[key]);
+                        }
+                    }
+                    
+                    // $("#" + key).val(data.site[key]);
+                    // if (key == "Commission")
+                    //     $("input[name='Commission'][value=" + data.site["Commission"] + "]").attr("checked", true);
+
+                    // $("#Old_Commisson").val(data.site["Commission"]);
+
+                    // if (key == "gateway_type") {
+                    //     $("input[name='gateway_type'][value=" + data.site["gateway_type"] + "]").attr("checked", true);
+                    // }
+                }
+
+                if (data.gateway.length > 0) {
+                    var str = '';
+                    for (i = 0; i < data.gateway.length; i++) {
+                        str += '<input class="aui-input SerialNumbers" type="text"  name="SerialNumbers['+i+']" id="SerialNumbers_' + i + '" required="required"  validate_msg="SN is require;" value="'+ data.gateway[i]['strSN']+'"> ';
+                    }
+                    $api.html($api.byId('div_sn'), str);
+                }
+                if(data.site["Country"]) {
+                    api.sendEvent({
+                        name: 'changeState',
+                        extra: {
+                            country: data.site["Country"],
+                            frmname: api.frameName
+                        }
+                    });    
+                }
+                               
+                
+            }
+            callback();
+        })
+    }
+
+    function getPostion() {
+        street = $api.val($api.byId('Street'));
+        city = $api.val($api.byId('City'));
+        state_province = $api.val($api.byId('State'));
+        country = $api.val($api.byId('Country'));
+        url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + street + "," + city + "," + state_province + "," + country + "&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+        // alert(url);
+        api.ajax({
+            url: url,
+            method: 'get',
+            cache: false,
+            timeout: 30,
+            dataType: 'json',            
+        },function (data, status) {
+            // console.log(JSON.stringify(data));
+            if (data.status == "OK") {
+
+                results = data.results;
+
+                latlng = results[0].geometry.location;
+                lat = latlng.lat;
+                lng = latlng.lng;
+                if (lat > 0) {
+                    setSelectVal("Latitude_Name", "+");
+                    $api.val($api.byId("Latitude"), lat);
+                } else {
+                    setSelectVal("Latitude_Name", "-");                    
+                    $api.val($api.byId("Latitude"), Math.abs(parseFloat(lat)));
+
+                }
+                if (lng > 0) {
+                    setSelectVal("Longitude_Name", "+");
+                    $api.val($api.byId("Longitude"), lng);
+                } else {
+                    setSelectVal("Longitude_Name", "-");
+                    $api.val($api.byId("#Longitude"), Math.abs(parseFloat(lng)));
+                }
+                timezone_url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + lat + "," + lng + "&timestamp=1331161200&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+                api.ajax({
+                    url: timezone_url,
+                    method: 'get',
+                    cache: false,
+                    timeout: 30,
+                    dataType: 'json',            
+                }, function (data, status) {
+                    if (data.status == "OK") {
+                        $api.val($api.byId("Timezone"), data.timeZoneId);
+                    } else{
+                        $api.val($api.byId("Timezone"), "UTC");
+                    }
+                     
+                });
+            } else {
+                url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "," + state_province + "," + country + "&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+                api.ajax({
+                    url: url,
+                    method: 'get',
+                    cache: false,
+                    timeout: 30,
+                    dataType: 'json',            
+                },function (data, status) {
+                    if (data.status == "OK") {
+                        results = data.results;
+
+                        latlng = results[0].geometry.location;
+                        lat = latlng.lat;
+                        lng = latlng.lng;
+                        if (lat > 0) {
+                            setSelectVal("Latitude_Name", "+");
+                            $api.val($api.byId("Latitude"), lat);
+                        } else {
+                            setSelectVal("Latitude_Name", "-");
+                            $api.val($api.byId("Latitude"), Math.abs(parseFloat(lat)));
+
+                        }
+                        if (lng > 0) {
+                            setSelectVal("Longitude_Name", "+");
+                            $api.val($api.byId("Longitude"), lng);
+                        } else {
+                            setSelectVal("Longitude_Name", "-");
+                            $api.val($api.byId("Longitude"), Math.abs(parseFloat(lng)));
+                        }
+                        timezone_url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + lat + "," + lng + "&timestamp=1331161200&key=AIzaSyBEhqeCc_aSTOAmg0OfSiaXtx0nhZATZQE";
+                        api.ajax({
+                            url: timezone_url,
+                            method: 'get',
+                            cache: false,
+                            timeout: 30,
+                            dataType: 'json',            
+                        },function (data, status) {
+                            if (data.status == "OK") {
+                                setSelectVal("Timezone", data.timeZoneId);
+                            } else{
+                                setSelectVal("Timezone", "UTC");
+                            }
+                        });
+                    } 
+                })
+
+            }
+
+        })
+    }
+
+</script>
+</html>

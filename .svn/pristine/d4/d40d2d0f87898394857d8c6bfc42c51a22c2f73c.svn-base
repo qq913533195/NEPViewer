@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title" id="find_pass_title">Find Password</div>
+    </header>
+    <section class="aui-content " >
+        <div class="aui-margin-b-20 aui-margin-t-20 aui-text-center aui-font-size-16"  >
+            <!-- <span id="find_pass_title2">FORGET PASSWORD</span> -->
+        </div>
+       
+    </section>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+    var localization = $api.getStorage("localization");
+    apiready = function(){
+        api.parseTapmode();
+        $api.html($api.byId('find_pass_title'), localization['find_pass_title']);
+        $api.html($api.byId('find_pass_title2'), localization['find_pass_title']);
+        var header = $api.byId('aui-header');
+        $api.fixStatusBar(header);
+        var headerPos = $api.offset(header);
+        var section_h = $api.offset($api.dom('section')).h;
+        var header_h = headerPos.h
+        openFrame('forget',false,0,header_h+ section_h,'auto',api.winHeight-headerPos.h,api.pageParam);
+        // openFrame('list',0,headerPos.h,'auto',api.winHeight-headerPos.h);
+    };
+
+   
+
+</script>
+</html>
