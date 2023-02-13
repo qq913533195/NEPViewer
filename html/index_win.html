@@ -33,6 +33,10 @@
             <i class="icon iconfont">&#xe7c6;</i>
             <div class="aui-bar-tab-label" id="label_home" >Home</div>
         </div> -->
+        <!-- <div class="aui-bar-tab-item " tapmode>
+            <i class="icon iconfont">&#xe7c6;</i>
+            <div class="aui-bar-tab-label" id="label_config" >Configure Network</div>
+        </div> -->
         <div class="aui-bar-tab-item  aui-active" tapmode>
             <i class="icon iconfont">&#xe63b;</i>
             <div class="aui-bar-tab-label" id="label_pvlist">Pv List</div>
@@ -79,6 +83,7 @@
 
         setTitle(localization.pvtitle);
         // $api.html($api.byId('label_home'), localization.dashboard);
+        $api.html($api.byId('label_config'), localization.configure_network);
         $api.html($api.byId('label_pvlist'), localization.pvlist);
         $api.html($api.byId('label_www'), localization.www);
         $api.html($api.byId('label_site'), localization.site);
@@ -100,19 +105,25 @@
         if($api.getStorage("isopen")==1)
             $api.removeCls($api.byId('www'), 'aui-hide');
             frames = [
-            {
+            // {
             //     name: 'dashboard_frm',
             //     url: 'dashboard_frm.html',
             //     bounces:false,
             //     pageParam:{}
-
-            // },{
+            // },
+            // {
+            //     name: 'config_frm',
+            //     url: 'config_frm.html',
+            //     bounces:false,
+            //     pageParam:{}
+            // },
+            {
                 name: 'pvlist_frm',
                 url: 'pvlist_frm.html',
                 bounces:false,
                 pageParam:{}
-
-            },{
+            },
+            {
 
             },
             {
@@ -120,14 +131,12 @@
                 url: 'site_frm.html',
                 bounces:false,
                 pageParam:{}
-
             },
             {
                 name: 'user_frm',
                 url: 'user_frm.html',
                 bounces:false,
                 pageParam:{}
-
             }
 
         ];
@@ -147,7 +156,7 @@
                 title=localization.user;
             // if (ret.index == 5)
             //     title=localization.user;
-            if(ret.index == 1 || ret.index == 3 || ret.index == 4 )
+            if(ret.index == 1 || ret.index == 4 || ret.index == 3 )
             {
                 api.setFrameGroupIndex({
                     name: 'group',
