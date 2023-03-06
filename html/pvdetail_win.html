@@ -63,7 +63,7 @@
             <i class="icon iconfont">&#xe61f;</i>
             <div class="aui-bar-tab-label" id="label_status" ></div>
         </div>
-        <div class="aui-bar-tab-item " tapmode>
+        <div class="aui-bar-tab-item " tapmode id="today">
             <i class="icon iconfont">&#xe67e;</i>
             <div class="aui-bar-tab-label" id="label_today">Today</div>
         </div>
@@ -102,6 +102,14 @@
         $api.html($api.byId('label_month'), localization.month);
         $api.html($api.byId('label_year'), localization.year);
         // alert(JSON.stringify(api.pageParam));
+        var sn_like = unescape(api.pageParam.Gateways).substring(0,3);
+        var sn_length = unescape(api.pageParam.Gateways).length;
+        // alert(sn_length);
+        if(sn_length == 8 && (sn_like == '30c' || sn_like == '30C'))
+        {
+            $api.addCls($api.byId('today'), 'aui-hide');
+        }
+
         var header = $api.byId('aui-header');
         $api.fixStatusBar(header);
         var headerPos = $api.offset(header);
