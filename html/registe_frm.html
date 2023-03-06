@@ -43,6 +43,7 @@
            <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        <span style="color: red;">*</span>
                         <span id="Email_Name">Email</span>
                     </div>
                     <div class="aui-list-item-input" >
@@ -63,6 +64,7 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        <span style="color: red;">*</span>
                         <span id="Password_Name">Password</span>
                     </div>
                     <div class="aui-list-item-input" >
@@ -74,6 +76,7 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        <span style="color: red;">*</span>
                         <span id="Confirm_Password_Name">Confirm  Password</span>
                     </div>
                     <div class="aui-list-item-input" >                   
@@ -143,7 +146,7 @@
                         <span id="Contact_Person">Contact Person</span>
                     </div>
                     <div class="aui-list-item-input" >                       
-                        <input class="aui-input" type="text"  name="Contact_Person" id="Contact_Person"  required="required" validate_msg="Contact_Person is require;">                         
+                        <input class="aui-input" type="text"  name="Contact_Person" id="ContactPerson"  required="required" validate_msg="Contact_Person is require;">                         
                     </div>
                 </div>
             </li>
@@ -151,10 +154,11 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        <span style="color: red;">*</span>
                         <span id="Contact_Number">Contact Number</span>
                     </div>
                     <div class="aui-list-item-input" >                       
-                        <input class="aui-input" type="text"  name="Contact_Number" id="Contact_Number"  required="required" validate_msg="Contact_Number is require;">                         
+                        <input class="aui-input" type="text"  name="Contact_Number" id="ContactNumber"  required="required" validate_msg="Contact_Number is require;">                         
                     </div>
                 </div>
             </li>
@@ -345,6 +349,7 @@
     function upload(){
         // var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
         var reg = /^[\w\-\.]+@[a-z0-9]+(\-[a-z0-9]+)?(\.[a-z0-9]+(\-[a-z0-9]+)?)*\.[a-z]{2,4}$/;
+        var reg_num = /^\d{4,}$/;
          
         var email = $api.val($api.byId('name'));
         if(email == ''){
@@ -359,6 +364,15 @@
         var pwd2 = $api.val($api.byId('pwd2'));
         if(pwd2 == ''){
             alert (localization.pwd2_is_required);return ;
+        }
+        if(password != pwd2){
+            alert (localization.two_pwd_err);return ;
+        }
+        var contact_number_2 = $api.val($api.byId('ContactNumber'));
+        if(contact_number_2 == ''){
+            alert (localization.contact_number_is_required);return ;
+        }else if(!reg_num.test(contact_number_2)){
+            alert (localization.contact_number_error);return ;
         }
 
         var form_data= getForm();

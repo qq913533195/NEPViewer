@@ -23,6 +23,7 @@
            <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        <span style="color: red;">*</span>
                         <span id="Email_Name">Email</span>
                     </div>
                     <div class="aui-list-item-input" >
@@ -131,6 +132,7 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        <span style="color: red;">*</span>
                         <span id="Contact_Number">Contact Number</span>
                     </div>
                     <div class="aui-list-item-input" >                       
@@ -311,6 +313,13 @@
     }
 
     function upload(){
+        var reg_num = /^\d{4,}$/;
+        var contact_number_2 = $api.val($api.byId('ContactNumber'));
+        if(contact_number_2 == ''){
+            alert (localization.contact_number_is_required);return ;
+        }else if(!reg_num.test(contact_number_2)){
+            alert (localization.contact_number_error);return ;
+        }
         var data = {};
         var form_data= getForm();
         var params_data = api.pageParam.data;

@@ -139,21 +139,20 @@ function ajaxRequest(url, params, callBack) {
     // alert(JSON.stringify(ret))
     if (ret) {
       callBack(ret, err);
-    } else {
-      api.alert({
-        msg: ('network error!')
-      });
-      api.openWin({
-        name: 'login_win',
-        url: 'login_win.html',
-        slidBackEnabled:false
-      });
-      setTimeout(function() {
-          closeWin();
-      }, 1000);
-      // api.rebootApp();
-      // alert(JSON.stringify(err));
-    }
+    } 
+    // else {
+    //   api.alert({
+    //     msg: ('network error!')
+    //   });
+    //   api.openWin({
+    //     name: 'login_win',
+    //     url: 'login_win.html',
+    //     slidBackEnabled:false
+    //   });
+    //   setTimeout(function() {
+    //       closeWin();
+    //   }, 1000);
+    // }
   });
 }
 
