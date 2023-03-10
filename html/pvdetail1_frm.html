@@ -42,7 +42,18 @@
         // alert(JSON.stringify(api.frameHeight));
         var gateways=unescape(api.pageParam.gateways);
         // alert(gateways);
-        var gateway_arr=gateways.split(",");
+        var gateway_arr_old=gateways.split(",");
+        var gateway_arr = [];
+        for (let i = 0; i < gateway_arr_old.length; i++) {
+          var gateway_like = '';
+          gateway_like = gateway_arr_old[i].substring(0,3);
+          // alert(gateway_like);
+          if (gateway_like == '30c' || gateway_like == '30C') {
+            // alert(gateway_arr_old[i]);
+            gateway_arr_old.splice(i,1)
+          }
+        }
+        gateway_arr = gateway_arr_old;
         var number=gateway_arr.length;
         var str='';
         // alert(number);
